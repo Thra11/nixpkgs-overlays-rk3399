@@ -1,10 +1,7 @@
 self: super:
 {
   rockchip-mpp = self.callPackage pkgs/rockchip-mpp { };
-  ffmpeg-rockchip = (super.ffmpeg_4.override {
-    branch = "4.1";
-  }).overrideAttrs (o: {
-    version = "4.1.4";
+  ffmpeg_4 = (self.callPackage pkgs/ffmpeg-rockchip { Cocoa = null; }).overrideAttrs (o: {
     src = super.fetchFromGitHub {
       repo = "ffmpeg";
       owner = "rockchip-linux";
@@ -14,7 +11,4 @@ self: super:
     buildInputs = o.buildInputs ++ [ self.rockchip-mpp ];
     configureFlags = o.configureFlags ++ [ "--enable-rkmpp" ];
   });
-  mpv = super.mpv.override {
-    ffmpeg_4 = self.ffmpeg-rockchip;
-  };
 }
