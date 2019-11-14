@@ -1,0 +1,25 @@
+From aa6bb5e735053893ef3624f9bfda04acf90f7073 Mon Sep 17 00:00:00 2001
+From: Tom Hall <tahall256@protonmail.ch>
+Date: Mon, 19 Aug 2019 23:15:03 +0100
+Subject: [PATCH] Offset ramdisk to accomodate larger kernel
+
+---
+ include/configs/rk3399_common.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/configs/rk3399_common.h b/include/configs/rk3399_common.h
+index 014a29acb0..33fd4891d1 100644
+--- a/include/configs/rk3399_common.h
++++ b/include/configs/rk3399_common.h
+@@ -67,7 +67,7 @@
+ 	"pxefile_addr_r=0x00600000\0" \
+ 	"fdt_addr_r=0x01f00000\0" \
+ 	"kernel_addr_r=0x02000000\0" \
+-	"ramdisk_addr_r=0x04000000\0"
++	"ramdisk_addr_r=0x05000000\0"
+ 
+ #include <config_distro_bootcmd.h>
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+-- 
+2.20.1
+
