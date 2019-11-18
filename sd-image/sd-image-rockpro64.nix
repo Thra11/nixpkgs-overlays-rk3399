@@ -44,7 +44,8 @@ in
         debug=on
       '';
       in ''
-        dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=sync conv=notrunc
+        dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=direct,sync conv=notrunc
+        dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc
         cp ${configTxt} firmware/config.txt
       '';
     populateRootCommands = ''
