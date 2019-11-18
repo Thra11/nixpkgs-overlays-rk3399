@@ -18,11 +18,13 @@ in
   nixpkgs.overlays = let
     uboot = import ../uboot.nix;
     kernel = import ../kernel.nix;
+    firmware = import ../firmware.nix;
     rockchip = import ../rockchip.nix;
     panfrost = import ../panfrost.nix;
   in [
     uboot
     kernel
+    firmware
     rockchip
     panfrost
   ];
@@ -33,6 +35,8 @@ in
   boot.consoleLogLevel = lib.mkDefault 7;
   boot.kernelPackages = pkgs.linuxPackages_rk3399_5_4;
   boot.kernelParams = [ "console=uart8250,mmio32,0xff1a0000" "console=ttyS2,1500000n8" "video=eDP-1:1920x1080@60" ];
+
+  hardware.firmware = [ pkgs.ap6256-firmware ];
 
   sdImage = {
     populateFirmwareCommands = let
