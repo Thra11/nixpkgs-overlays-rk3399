@@ -39,15 +39,10 @@ in
   hardware.firmware = [ pkgs.ap6256-firmware ];
 
   sdImage = {
-    populateFirmwareCommands = let
-      configTxt = pkgs.writeText "config.txt" ''
-        debug=on
-      '';
-      in ''
-        dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=direct,sync conv=notrunc
-        dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc
-        cp ${configTxt} firmware/config.txt
-      '';
+    populateFirmwareCommands = ''
+      dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=direct,sync conv=notrunc
+      dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc
+    '';
     populateRootCommands = ''
       mkdir -p ./files/boot
       ${extlinux-conf-builder} -t 3 -c ${config.system.build.toplevel} -d ./files/boot
