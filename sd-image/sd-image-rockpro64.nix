@@ -60,8 +60,7 @@ in
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
     desktopManager.plasma5.enableQt4Support = false;
-    #xserver.layout = "us";
-    #xserver.xkbOptions = "eurosign:e";
+    layout = "gb";
     libinput.enable = true;
   };
 }
