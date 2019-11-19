@@ -25,6 +25,9 @@ let
 in
 (buildUBoot {
   defconfig = "pinebook_pro-rk3399_defconfig";
+  extraConfig = ''
+    LOG y
+  '';
   extraMeta.platforms = ["aarch64-linux"];
   BL31 = "${atf}/bl31.elf";
   filesToInstall = [
