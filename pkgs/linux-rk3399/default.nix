@@ -10,8 +10,8 @@ buildLinux (args // rec {
     domain = "gitlab.manjaro.org";
     owner = "tsys";
     repo = "linux-pinebook-pro";
-    rev = "ce2ff1b0ab00ae24154cc9745604c0c3af996dce";
-    sha256 = "04vdmzv7y4qhs1hmnkm5m2b0wgf8fz9hqb46xyv91g41v78bw1g8";
+    rev = "64169f45b2ec28108917e67dc29a2d341d82acdb";
+    sha256 = "1nhk17bn5dmcpknvhmkzlmlc26kx4mg7y3fad6ggqkxj3vbyj9hl";
   };
 
   extraConfig = ''
