@@ -12,7 +12,7 @@ in
   imports = [
     <nixpkgs/nixos/modules/profiles/base.nix>
     <nixpkgs/nixos/modules/profiles/installation-device.nix>
-    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
+    ./sd-image.nix
   ];
 
   nixpkgs.overlays = let
