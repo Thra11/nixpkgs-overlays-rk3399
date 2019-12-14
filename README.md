@@ -5,7 +5,7 @@ This repository attempts to provide support for running NixOS on the Pinebook Pr
 The repository also contains an sd-image definition. This is not strictly part of the overlay, but it can be used to build a bootable SD card image including the changes from the overlay.
 
 The overlay includes:
-* Linux kernel 5.4.0-rc6 + changes by @tsys of manjaro
+* Linux kernel 5.4.0 + changes by @tsys of manjaro
 * ~Mainline u-boot, courtesy of @samueldr
 * Mesa 19.2.0 *if* the version in nixpkgs is too old
 * rockchip-mpp: library required for accelerated video
@@ -13,7 +13,7 @@ The overlay includes:
 
 ## Using the overlay
 
-Following [these](https://nixos.wiki/wiki/Overlays) instructions, clone the repository somewhere (such as /etc/nixos/overlays) and apply the overlay in /etc/nixos/configuration.nix. For example:
+Following [these](https://nixos.wiki/wiki/Overlays) instructions, clone the repository somewhere (such as `/etc/nixos/overlays`) and apply the overlay in `/etc/nixos/configuration.nix`. For example:
 ```
   nixPath = [
     # You can add nixpkgs-overlays to the nix path allows users to use the overlay
@@ -50,7 +50,7 @@ To build the image, run the following command. Note that this will use whatever 
 ```
 nix-build <nixpkgs/nixos> -I nixos-config=./sd-image-rockpro64.nix -A config.system.build.sdImage
 ```
-This will produce a symlink called `result` in the working directory, pointing to a path in the nix store containing a. Depending which branch/version of nixpkgs you used, it may or may not be compressed (more recent nixpkgs use bzip2 to compress the finished image).
+This will produce a symlink called `result` in the working directory, pointing to a path in the nix store containing an SD image. Depending which branch/version of nixpkgs you used, it may or may not be compressed (more recent nixpkgs use bzip2 to compress the finished image).
 
 ## Updating the keyboard/trackpad firmware
 
