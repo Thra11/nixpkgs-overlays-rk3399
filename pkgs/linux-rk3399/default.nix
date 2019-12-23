@@ -10,11 +10,12 @@ buildLinux (args // rec {
     domain = "gitlab.manjaro.org";
     owner = "tsys";
     repo = "linux-pinebook-pro";
-    rev = "f889ca0e5126672b639b90319ee2a27f272dcd60";
-    sha256 = "0af1pl0731bk273qdg1x29qkfqqxifvnsb7hnm59fiik1x0ihfj5";
+    rev = "9fdcc6656ef791322cb695c4f6ad8c26d5dcbd99";
+    sha256 = "0gxbdh2yh6i4v4sjvn0x57ds3zh582392ma3ng96dk07i08jaxha";
   };
 
   extraConfig = ''
     CRYPTO_AEGIS128_SIMD n
+    RTC_DRV_RK808 y
   '';
 } // (args.argsOverride or {}))
