@@ -8,8 +8,6 @@ The overlay includes:
 * Linux kernel 5.4.0 + changes by @tsys of manjaro
 * ~Mainline u-boot, courtesy of @samueldr
 * Mesa 19.2.0 *if* the version in nixpkgs is too old
-* rockchip-mpp: library required for accelerated video
-* ffmpeg_4 built from rockchip source tree, including support for rkmpp
 
 ## Using the overlay
 
@@ -24,12 +22,10 @@ Following [these](https://nixos.wiki/wiki/Overlays) instructions, clone the repo
   nixpkgs.overlays = let
     kernel = import ./overlays/kernel.nix;
     firmware = import ./overlays/firmware.nix;
-    rockchip = import ./overlays/rockchip.nix;
     panfrost = import ./overlays/panfrost.nix;
   in [
     kernel
     firmware
-    rockchip
     panfrost
   ];
 
