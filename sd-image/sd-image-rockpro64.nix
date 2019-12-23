@@ -52,9 +52,8 @@ in
   services.xserver = {
     enable = true;
     videoDrivers = [ "panfrost" ];
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
-    desktopManager.plasma5.enableQt4Support = false;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome3.enable = true;
     layout = "gb";
     libinput.enable = true;
   };
