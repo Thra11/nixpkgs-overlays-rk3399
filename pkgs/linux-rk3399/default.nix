@@ -17,5 +17,7 @@ buildLinux (args // rec {
   extraConfig = ''
     CRYPTO_AEGIS128_SIMD n
     RTC_DRV_RK808 y
+    VIDEO_HANTRO m
+    VIDEO_HANTRO_ROCKCHIP y
   '';
 } // (args.argsOverride or {}))
