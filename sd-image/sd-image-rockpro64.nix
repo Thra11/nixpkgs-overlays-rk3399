@@ -19,13 +19,11 @@ in
     uboot = import ../uboot.nix;
     kernel = import ../kernel.nix;
     firmware = import ../firmware.nix;
-    rockchip = import ../rockchip.nix;
     panfrost = import ../panfrost.nix;
   in [
     uboot
     kernel
     firmware
-    rockchip
     panfrost
   ];
 
