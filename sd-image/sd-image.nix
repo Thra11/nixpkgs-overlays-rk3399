@@ -1,12 +1,7 @@
 # This module creates a bootable SD card image containing the given NixOS
-# configuration. The generated image is MBR partitioned, with a FAT
-# /boot/firmware partition, and ext4 root partition. The generated image
-# is sized to fit its contents, and a boot script automatically resizes
-# the root partition to fit the device on the first boot.
-#
-# The firmware partition is built with expectation to hold the Raspberry
-# Pi firmware and bootloader, and be removed and replaced with a firmware
-# build for the target SoC for other board families.
+# configuration. The generated image is MBR partitioned, with an ext4 root
+# partition. The generated image is sized to fit its contents, and a boot script
+# automatically resizes the root partition to fit the device on the first boot.
 #
 # The derivation for the SD image will be placed in
 # config.system.build.sdImage
@@ -16,7 +11,7 @@
 with lib;
 
 let
-  rootfsImage = pkgs.callPackage ../../../lib/make-ext4-fs.nix ({
+  rootfsImage = pkgs.callPackage <nixpkgs/nixos/lib/make-ext4-fs.nix> ({
     inherit (config.sdImage) storePaths;
     populateImageCommands = config.sdImage.populateRootCommands;
     volumeLabel = "NIXOS_SD";
@@ -25,11 +20,6 @@ let
   });
 in
 {
-  imports = [
-    (mkRemovedOptionModule [ "sdImage" "bootPartitionID" ] "The FAT partition for SD image now only holds the Raspberry Pi firmware files. Use firmwarePartitionID to configure that partition's ID.")
-    (mkRemovedOptionModule [ "sdImage" "bootSize" ] "The boot files for SD image have been moved to the main ext4 partition. The FAT partition now only holds the Raspberry Pi firmware files. Changing its size may not be required.")
-  ];
-
   options.sdImage = {
     imageName = mkOption {
       default = "${config.sdImage.imageBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.img";
@@ -78,6 +68,13 @@ in
         All files in that directory are copied to the
         root (/) partition on the SD image. Use this to
         populate the ./files/boot (/boot) directory.
+      '';
+    };
+
+    populateUBootCommands = mkOption {
+      example = literalExample "''dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc''";
+      description = ''
+        Shell commands to write u-boot to the appropriate offset.
       '';
     };
 
@@ -132,8 +129,6 @@ in
         # The "bootable" partition is where u-boot will look file for the bootloader
         # information (dtbs, extlinux.conf file).
         sfdisk $img <<EOF
-            label: dos
-            label-id: ${config.sdImage.firmwarePartitionID}
             start=''${gap}M, type=83, bootable
         EOF
 
@@ -141,8 +136,8 @@ in
         eval $(partx $img -o START,SECTORS --nr 1 --pairs)
         dd conv=notrunc if=${rootfsImage} of=$img seek=$START count=$SECTORS
 
-        # Populate the files intended for /boot/firmware
-        ${config.sdImage.populateFirmwareCommands}
+        # Write u-boot files
+        ${config.sdImage.populateUBootCommands}
 
         if test -n "$compressImage"; then
             bzip2 $img

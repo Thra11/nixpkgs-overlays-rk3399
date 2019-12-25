@@ -43,10 +43,10 @@ in
       mkdir -p ./files/boot
       ${extlinux-conf-builder} -t 3 -c ${config.system.build.toplevel} -d ./files/boot
     '';
-#    populateUBootCommands = ''
-#      dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=direct,sync conv=notrunc
-#      dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc
-#    '';
+    populateUBootCommands = ''
+      dd if=${pkgs.ubootRockPro64}/idbloader.img of=$img bs=512 seek=64 oflag=direct,sync conv=notrunc
+      dd if=${pkgs.ubootRockPro64}/u-boot.itb of=$img bs=512 seek=16384 oflag=direct,sync conv=notrunc
+    '';
   };
 
   services.udev.extraHwdb = ''
