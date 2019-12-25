@@ -57,6 +57,7 @@ in
 
   '';
 
+  networking.wireless.enable = false;
   services.xserver = {
     enable = true;
     videoDrivers = [ "panfrost" ];
