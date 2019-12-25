@@ -36,6 +36,8 @@ in
 
   hardware.firmware = [ pkgs.ap6256-firmware ];
 
+  hardware.bluetooth.enable = true;
+
   sdImage = {
     populateRootCommands = ''
       mkdir -p ./files/boot
