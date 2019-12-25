@@ -17,6 +17,13 @@ buildLinux (args // rec {
   extraConfig = ''
     CRYPTO_AEGIS128_SIMD n
     RTC_DRV_RK808 y
+    STAGING y
+    STAGING_MEDIA y
+    ARCH_ROCKCHIP y
+    VIDEO_DEV m
+    VIDEO_V4L2 m
+    MEDIA_CONTROLLER y
+    MEDIA_CONTROLLER_REQUEST_API y
     VIDEO_HANTRO m
     VIDEO_HANTRO_ROCKCHIP y
   '';
