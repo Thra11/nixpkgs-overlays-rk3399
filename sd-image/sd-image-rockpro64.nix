@@ -49,6 +49,14 @@ in
 #    '';
   };
 
+  services.udev.extraHwdb = ''
+    evdev:input:b0003v258Ap001E*
+      KEYBOARD_KEY_700a5=brightnessdown
+      KEYBOARD_KEY_700a6=brightnessup
+      KEYBOARD_KEY_70066=sleep
+
+  '';
+
   services.xserver = {
     enable = true;
     videoDrivers = [ "panfrost" ];
