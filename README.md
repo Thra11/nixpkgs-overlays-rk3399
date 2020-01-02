@@ -9,6 +9,12 @@ The overlay includes:
 * ~Mainline u-boot, courtesy of @samueldr
 * Mesa 19.2.0 *if* the version in nixpkgs is too old
 
+### Remaining issues
+* No graphical output from u-boot
+* No SPI/NVMe support in u-boot
+* Suspend does not work
+* Hardware accelerated video support is incomplete: The hantro driver in staging is enabled and appears to work (e.g. `ffmpeg -loglevel debug -hwaccel drm -hwaccel_device /dev/dri/card0 -i $some_file.avi -pix_fmt bgra -f fbdev /dev/fb0` works), but frontend support is lacking and some codecs aren't supported yet.
+
 ## Using the overlay
 
 Following [these](https://nixos.wiki/wiki/Overlays) instructions, clone the repository somewhere (such as `/etc/nixos/overlays`) and apply the overlay in `/etc/nixos/configuration.nix`. For example:
