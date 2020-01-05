@@ -50,7 +50,7 @@ Requirements
 
 To build the image, run the following command. Note that this will use whatever channel or path is configured as `<nixpkgs>` on the build host, with the overlay applied.
 ```
-nix-build <nixpkgs/nixos> -I nixos-config=./sd-image-rockpro64.nix -A config.system.build.sdImage
+nix-build '<nixpkgs/nixos>' -I nixos-config=./sd-image-pinebook-pro.nix -A config.system.build.sdImage
 ```
 This will produce a symlink called `result` in the working directory, pointing to a path in the nix store containing an SD image. Depending which branch/version of nixpkgs you used, it may or may not be compressed (more recent nixpkgs use bzip2 to compress the finished image).
 

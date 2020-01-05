@@ -1,5 +1,5 @@
 # To build, use:
-# nix-build '<nixpkgs/nixos>' -I nixos-config=./sd-image-rockpro64.nix -A config.system.build.sdImage
+# nix-build '<nixpkgs/nixos>' -I nixos-config=./sd-image-pinebook-pro.nix -A config.system.build.sdImage
 { config, lib, pkgs, ... }:
 
 let
