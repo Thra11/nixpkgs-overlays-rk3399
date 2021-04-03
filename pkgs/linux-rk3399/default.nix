@@ -3,15 +3,15 @@
 with stdenv.lib;
 
 buildLinux (args // rec {
-  version = "5.4.0";
+  version = "5.10.0-rc5";
   modDirVersion = version;
 
   src = fetchFromGitLab {
     domain = "gitlab.manjaro.org";
     owner = "tsys";
     repo = "linux-pinebook-pro";
-    rev = "9fdcc6656ef791322cb695c4f6ad8c26d5dcbd99";
-    sha256 = "0gxbdh2yh6i4v4sjvn0x57ds3zh582392ma3ng96dk07i08jaxha";
+    rev = "c04087388bdb7d79d5202ffb91aa387e36901056";
+    sha256 = "0igxbq8i0z6qs1kxxxs440d1n1j5p5a26lgcn7q5k82rdjqhwpw9";
   };
 
   extraConfig = ''
