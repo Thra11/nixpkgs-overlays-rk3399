@@ -31,7 +31,7 @@ in
   boot.loader.generic-extlinux-compatible.enable = true;
 
   boot.consoleLogLevel = lib.mkDefault 7;
-  boot.kernelPackages = pkgs.linuxPackages_rk3399_5_4;
+  boot.kernelPackages = pkgs.linuxPackages_rk3399;
   boot.kernelParams = [ "console=uart8250,mmio32,0xff1a0000" "console=ttyS2,1500000n8" "video=eDP-1:1920x1080@60" ];
 
   hardware.firmware = [ pkgs.ap6256-firmware ];
