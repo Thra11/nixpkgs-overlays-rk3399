@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     install -Dm644 "${./nvram_ap6256.txt}" "$out/lib/firmware/brcm/brcmfmac43456-sdio.pine64,pinebook-pro.txt"
     install -Dm644 "${./brcmfmac43456-sdio.clm_blob}" "$out/lib/firmware/brcm/brcmfmac43456-sdio.clm_blob"
   '';
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Firmware files for the ap6256 wifi/bt module";
     homepage = "https://github.com/radxa/rk-rootfs-build";
     license = licenses.unfreeRedistributableFirmware;

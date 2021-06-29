@@ -1,7 +1,5 @@
 { stdenv, buildPackages, fetchFromGitLab, perl, buildLinux, modDirVersionArg ? null, ... } @ args:
 
-with stdenv.lib;
-
 buildLinux (args // rec {
   version = "5.10.0-rc5";
   modDirVersion = version;
