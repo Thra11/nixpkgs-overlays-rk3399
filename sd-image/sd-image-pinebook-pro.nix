@@ -57,12 +57,15 @@ in
 
   '';
 
-  networking.wireless.enable = false;
+  networking = {
+    wireless.enable = false;
+    networkmanager.enable = true;
+  };
   services.xserver = {
     enable = true;
     videoDrivers = [ "panfrost" ];
-    displayManager.gdm.enable = true;
-    desktopManager.gnome3.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
     layout = "gb";
     libinput.enable = true;
   };
