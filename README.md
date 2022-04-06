@@ -56,6 +56,18 @@ This will produce a symlink called `result` in the working directory, pointing t
 
 ## Updating the keyboard/trackpad firmware
 
+
+> **WARNING**: Some hardware batches for the Pinebook Pro ship with the
+> wrong chip for the keyboard controller. While it will work with the
+> firmware it ships with, it *may brick* while flashing the updated
+> firmware. [See this comment on the firmware repository](https://github.com/jackhumbert/pinebook-pro-keyboard-updater/issues/33#issuecomment-850889285).
+>
+> It is unclear how to identify said hardware from a running system.
+
+To determine which keyboard controller you have, you will need to disassemble
+the Pinebook Pro as per [the Pine64 wiki](https://wiki.pine64.org/wiki/Pinebook_Pro#Keyboard),
+and make sure that the IC next to the U23 marking on the main board is an **SH68F83**.
+
 The procedure is exactly as described in the original instructions. However, instead of running
 ```
 sudo apt-get install build-essential libusb-1.0-0-dev xxd
